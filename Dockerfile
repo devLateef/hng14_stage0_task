@@ -1,19 +1,16 @@
-FROM rust:1.94 as builder
+FROM rust:1.88 AS builder
 
 WORKDIR /app
 COPY . .
-
 RUN cargo build --release
 
-# Runtime stage (smaller image)
 FROM debian:bookworm-slim
 
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
+COPY --from=builder /app/target/release/hng14_stage0 .
 
-# Copy compiled binary
-COPY --from=builder /app/target/release/your_binary_name .
+EXPOSE 8080
 
-# Heroku uses PORT env variable
-ENV PORT=8080
-
-CMD ["./target/release/hng14_stage0.exe"]
+CMD ["./hng14_stage0"]
