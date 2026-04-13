@@ -1,12 +1,12 @@
 [package]
-name = "hello_world"
+name = "hng14_stage0"
 version = "0.1.0"
 edition = "2024"
 author = "devLateef"
 
 [dependencies]
 actix-web = "4"
-reqwest = { version = "0.11", features = ["json"] }
+reqwest = { version = "0.11.27", features = ["json"] }
 serde = { version = "1.0", features = ["derive"] }
 chrono = { version = "0.4", features = ["serde"] }
 actix-cors = "0.7"
