@@ -107,7 +107,7 @@ async fn classify(query: web::Query<NameQuery>) -> impl Responder {
 async fn main() -> std::io::Result<()> {
 
     let port: u16 = env::var("PORT")
-    .unwrap_or_else(|_| "3000".to_string())
+    .unwrap_or_else(|_| "8080".to_string())
     .parse()
     .expect("PORT must be a number");
 
